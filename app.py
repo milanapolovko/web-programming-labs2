@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, redirect
 app=Flask(__name__)
 
 @app.route("/")
@@ -8,7 +8,7 @@ def web():
         <html> 
             <body>
                 <h1>web-сервер на flask</h1>
-                <a href="/web">author</a>
+                <a href="/author">author</a>
             </body>
         </html>"""
 
@@ -55,3 +55,19 @@ def conter():
     </body>
 </html>
 '''
+
+@app.route("/info")
+def info():
+    return redirect("/author")
+
+@app.route('/lab1/created')
+def created():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <h1>Создано успешно</h1>
+        <div><i> что-то создано...</i></div>
+    </body>
+</html>
+''', 201
