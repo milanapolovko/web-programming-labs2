@@ -145,6 +145,72 @@ def created():
 def not_found(err):
     return "нет такой страницы", 404
 
+@app.route('/lab1/400')
+def bad_request():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <i>неправильный, некорректный запрос</i>
+    </body>
+</html>
+''', 400
+
+@app.route('/lab1/401')
+def bad_request():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <i>пользователь не авторизован</i>
+    </body>
+</html>
+''', 401
+
+@app.route('/lab1/402')
+def payment_required():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <i>необходима оплата</i>
+    </body>
+</html>
+''', 402
+
+@app.route('/lab1/403')
+def forbidden ():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <i>доступ запрещен</i>
+    </body>
+</html>
+''', 403
+
+@app.route('/lab1/405')
+def method_not_allowed():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <i>метод не поддерживается</i>
+    </body>
+</html>
+''', 405
+
+@app.route('/lab1/418')
+def im_a_teapot():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <i>я — чайник</i>
+    </body>
+</html>
+''', 418
+
 @app.route('/lab1/reset')
 def reset():
     global count
