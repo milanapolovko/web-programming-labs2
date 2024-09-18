@@ -59,6 +59,7 @@ def conter():
 <html>
     <body>
         Сколько раз вы сюда заходили: ''' + str(count) + '''
+        <p><a href="/lab1/reset">Очистка счетчика</a></p>
     </body>
 </html>
 '''
@@ -82,3 +83,17 @@ def created():
 @app.errorhandler(404)
 def not_found(err):
     return "нет такой страницы", 404
+
+@app.route('/lab1/reset')
+def reset():
+    global count
+    count=0
+    return '''
+<!doctype html>
+<html>
+    <body>
+        Счетчик очищен: ''' + str(count) + '''
+        <p><a href="/lab1/counter">Вернуться к счетчику</a></p>
+    </body>
+</html>
+'''
