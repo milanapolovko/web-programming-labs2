@@ -2,6 +2,49 @@ from flask import Flask, url_for, redirect
 app=Flask(__name__)
 
 @app.route("/")
+def title():
+    return """<!doctype html>
+        <html>
+            <head>
+                <title>НГТУ,ФБ,Лабораторные работы</title>
+            </head> 
+            <body>
+            <header>
+                НГТУ, ФБ, WEB-программирование,часть 2. Список лабораторных
+            </header>
+            <main>
+                <ol>
+                    <li><a href="/lab1">Первая лабораторная работа</a></li>
+                </ol>
+            </main>
+            <footer>
+                Половко Милана Андреевна, ФБИ-21, 3 курс, 2024
+            </footer>
+            </body>
+        </html>"""
+
+@app.route("/index")
+def index():
+    return """<!doctype html>
+        <html>
+            <head>
+                <title>НГТУ,ФБ,Лабораторные работы</title>
+            </head> 
+            <body>
+            <header>
+                НГТУ, ФБ, WEB-программирование,часть 2. Список лабораторных
+            </header>
+            <main>
+                <ol>
+                    <li><a href="/lab1">Первая лабораторная работа</a></li>
+                </ol>
+            </main>
+            <footer>
+                Половко Милана Андреевна, ФБИ-21, 3 курс, 2024
+            </footer>
+            </body>
+        </html>"""
+
 @app.route("/lab1/web")
 def web():
     return """<!doctype html>
