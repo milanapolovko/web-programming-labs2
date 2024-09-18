@@ -143,7 +143,23 @@ def created():
 
 @app.errorhandler(404)
 def not_found(err):
-    return "нет такой страницы", 404
+    path=url_for("static", filename="404.jpg")
+    path2=url_for("static", filename="error.css")
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="''' + path2 + '''">
+    </head>
+    <body>
+        <img src="''' + path + '''">
+        <div>
+            <h1>Упс! Страница не найдена.</h1>
+            <h2>К сожалению, мы не можем найти запрашиваемую вами страницу</h2>
+        </div>
+    </body>
+</html>
+''', 404
 
 @app.route('/lab1/400')
 def bad_request():
@@ -157,7 +173,7 @@ def bad_request():
 ''', 400
 
 @app.route('/lab1/401')
-def bad_request():
+def unauthorized():
     return '''
 <!doctype html>
 <html>
