@@ -240,3 +240,21 @@ def reset():
     </body>
 </html>
 '''
+
+@app.route('/lab1/error')
+def trigger_error():
+    result=1/0
+    return str(result)
+    
+@app.errorhandler(500)
+def server_error(err):
+    return '''
+<!doctype html>
+<html>
+    <body> 
+        <h1>Внутренняя ошибка сервера<h1>
+        <i>Сервер обнаружил внутреннюю ошибку и не смог выполнить ваш запрос. 
+        Либо сервер перегружен, либо в приложении есть ошибка.</i>
+    </body>
+</html>
+''', 500
