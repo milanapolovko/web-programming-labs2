@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %} Лабораторная работа 2 {% endblock %}
+
+{# основной контент: #}
+{% block main %}
+    <h1>Расчет с параметрами:</h1>
+    
+    {% if a %} {{a}} {%endif %} + {% if b %} {{b}} {%endif %}={{a+b}}<br>
+    {% if a %} {{a}} {%endif %} * {% if b %} {{b}} {%endif %}={{a*b}}<br>
+    {% if a %} {{a}} {%endif %} - {% if b %} {{b}} {%endif %}={{a-b}}<br>
+    {% if a %} {{a}} {%endif %} / {% if b %} {{b}} {%endif %}={{a/b}}<br>
+    {% if a %}{{a}}{%endif %}<sup>{% if b %}{{b}}{%endif %}</sup>={{a**b}}<br>
+
+{% endblock %}
