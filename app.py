@@ -339,6 +339,7 @@ def text():
             'Content-Language': 'en-CA , de-DE'
         }
 
+
 @app.route('/lab2/a/')
 def a():
     return 'со слешем'
@@ -349,28 +350,72 @@ def a2():
 
 flower_list=['роза', 'тюльпан', 'незабудка', 'ромашка']
 
-
 @app.route('/lab2/flowers/<int:flower_id>')
 def flowers(flower_id):
     if flower_id >= len (flower_list):
         return "такого цветка нет", 404
     else:
-        return "цветок: " + flower_list[flower_id]
+        return f'''
+    <!doctype html>
+        <html>
+            <body>
+                <p>Под индексом {flower_id} записан цветок: {flower_list[flower_id]}</p>
+                <p><a href="/lab2/kol_flowers">Список всех цветов</a></p>
+            </body>
+        </html>   
+    '''  
+
+@app.route('/lab2/add_flower/')
+def not_name():
+    return 'Вы не задали имя цветка', 400
+
 
 @app.route('/lab2/add_flower/<name>')
 def add_flower(name):
     flower_list.append(name)
     return f'''
-    <!doctype html>
+<!doctype html>
     <html>
         <body>
-        <h1>Добавлен новый цветок</h1>
-        <p>Название нового цветка: {name} </p>
-        <p>Всего цветов: {len(flower_list)} </p>
-        <p>Полный список: {flower_list} </p>
+            <h1>Добавлен новый цветок</h1>
+            <p>Название нового цветка: {name} </p>
+            <p>Всего цветов: {len(flower_list)} </p>
+            <p>Полный список: {flower_list} </p>
         </body>
-     </html>   
+    </html>   
+''' 
+
+@app.route('/lab2/kol_flowers')
+def kol_flower():
+    flower_string=', '.join(flower_list)
+    if flower_list!=[]:
+        return f'''
+        <!doctype html>
+            <html>
+                <body>
+                    <p>Все цветы: {flower_string} </p>
+                    <p>Всего цветов: {len(flower_list)} </p>
+                </body>
+            </html>   
+        ''' 
+    else:
+        return 'Нет доступных цветов'
+
+@app.route('/lab2/delet_flower')
+def delet_flower():
+    global flower_list
+    flower_list=[]
+    return f'''
+    <!doctype html>
+        <html>
+            <body>
+                <p>Cписок очищен</p>
+                <p>Всего цветов: {len(flower_list)} </p>
+                <p><a href="{url_for('kol_flower')}">Показать все цветы</a></p>
+            </body>
+        </html>   
     ''' 
+
 @app.route('/lab2/example')
 def example():
     name='Половко Милана'
