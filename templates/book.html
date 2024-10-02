@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %} Лабораторная работа 2 {% endblock %}
+
+{# основной контент: #}
+{% block main %}
+<h1>Книги</h1>
+<ul>
+    {% for f in books %}
+        <li>Название: {{ f.name }}. Автор: {{ f.avtor }}. Жанр: {{ f.genre }}. Количество страниц:{{ f.number_of_pages }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
