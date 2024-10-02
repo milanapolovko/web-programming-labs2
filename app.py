@@ -15,6 +15,7 @@ def title():
             <main>
                 <ol>
                     <li><a href="/lab1">Первая лабораторная работа</a></li>
+                    <li><a href="/lab2">Вторая лабораторная работа</a></li>
                 </ol>
             </main>
             <footer>
@@ -342,11 +343,17 @@ def text():
 
 @app.route('/lab2/a/')
 def a():
-    return 'со слешем'
+    return f''' 
+    со слешем <br>
+    <a href="/">Главное меню</a>
+    '''
 
 @app.route('/lab2/a')
 def a2():
-    return 'без слеша'
+    return f''' 
+    без слеша <br>
+    <a href="/">Главное меню</a>
+    '''
 
 flower_list=['роза', 'тюльпан', 'незабудка', 'ромашка']
 
@@ -361,13 +368,15 @@ def flowers(flower_id):
             <body>
                 <p>Под индексом {flower_id} записан цветок: {flower_list[flower_id]}</p>
                 <p><a href="/lab2/kol_flowers">Список всех цветов</a></p>
+                <a href="/">Главное меню</a>
             </body>
         </html>   
     '''  
 
 @app.route('/lab2/add_flower/')
 def not_name():
-    return 'Вы не задали имя цветка', 400
+    return f'''Вы не задали имя цветка<br>
+        <a href="/">Главное меню</a>''', 400
 
 
 @app.route('/lab2/add_flower/<name>')
@@ -381,6 +390,7 @@ def add_flower(name):
             <p>Название нового цветка: {name} </p>
             <p>Всего цветов: {len(flower_list)} </p>
             <p>Полный список: {flower_list} </p>
+            <a href="/">Главное меню</a>
         </body>
     </html>   
 ''' 
@@ -395,6 +405,7 @@ def kol_flower():
                 <body>
                     <p>Все цветы: {flower_string} </p>
                     <p>Всего цветов: {len(flower_list)} </p>
+                    <a href="/">Главное меню</a>
                 </body>
             </html>   
         ''' 
@@ -412,6 +423,7 @@ def delet_flower():
                 <p>Cписок очищен</p>
                 <p>Всего цветов: {len(flower_list)} </p>
                 <p><a href="{url_for('kol_flower')}">Показать все цветы</a></p>
+                <a href="/">Главное меню</a>
             </body>
         </html>   
     ''' 
@@ -502,3 +514,4 @@ def berries():
            "Близкая родственница малины, морошки, костяники и княженики: с точки зрения науки все виды этих растений относятся к одному и "
            "тому же роду - Rubus. Ягоды ежевики кисловато-сладкие, тёмного с сизым оттенком цвета."}]
     return render_template('berries.html',berries_list=berries_list)  
+
