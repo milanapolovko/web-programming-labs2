@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %} Лабораторная работа 2 {% endblock %}
+
+{# основной контент: #}
+{% block main %}
+    <h1>Шаблоны</h1>
+    <div>Тема лабораторной - шаблоны. Список сделанных страниц:</div>
+    <ol>
+        <li><a href="/lab2/example">example</a></li>
+        <li><a href="/lab2/a/">Адрес со слешем</a></li>
+        <li><a href="/lab2/a">Адрес без слеша</a></li>
+        <li><a href="/lab2/flowers/<int:flower_id>">Индексы цветов</a></li>
+        <li><a href="/lab2/add_flower/">Добавление цветов</a></li>
+        <li><a href="/lab2/kol_flowers">Список цветов</a></li>
+        <li><a href="/lab2/delet_flower">Очистка списка цветов</a></li>
+        <li><a href="/lab2/filters">Фильтры</a></li>
+        <li><a href="/lab2/calc/<int:a>/<int:b>">Арифметика 1</a></li>
+        <li><a href="/lab2/calc/1/1">Арифметика 2</a></li>
+        <li><a href="/lab2/calc/<int:a>">Арифметика 3</a></li>
+        <li><a href="/lab2/books">Книги</a></li>
+        <li><a href="/lab2/berries">Ягоды</a></li>
+    </ol>
+{% endblock %}
