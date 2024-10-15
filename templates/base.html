@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Половко Милана. {% block lab %}{% endblock %}</title>
     <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+    {% block style %}{% endblock %}
     <link rel="shortcut icon" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-icon">
     <link rel="icon" href="{{url_for('static',filename='favicon-32x32.png')}}">
     <link rel="icon" href="{{url_for('static',filename='favicon-16x16.png')}}">
@@ -16,9 +17,9 @@
 
     <main>
         {% block main %}{% endblock %}
-        <a href="/">Главное меню</a>
+        
     </main>
-
+    <a style="margin-left:20px;" href="/">Главное меню</a>
     <footer>
         &copy; Половко Милана, ФБИ-21, 3 курс, 2024
     </footer>
