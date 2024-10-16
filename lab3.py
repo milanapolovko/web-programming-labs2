@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for, redirect, render_template, request, make_response
+from flask import Blueprint, redirect, render_template, request, make_response
 lab3=Blueprint('lab3',__name__)
 
 @lab3.route('/lab3/')
@@ -40,3 +40,54 @@ def form1():
 
     sex=request.args.get('sex')
     return render_template('lab3/form1.html', user=user,age=age,sex=sex, errors=errors )
+
+
+@lab3.route('/lab3/order')
+def order():
+    return render_template('lab3/order.html')
+
+
+@lab3.route('/lab3/pay')
+def pay():
+    price=0
+    drink=request.args.get('drink')
+    if drink=='cofee':
+        price=120
+    elif drink=='black-tea':
+        price=80
+    else:
+        price=70
+
+    if request.args.get('milk')=='on':
+        price+=30
+    if request.args.get('sugar')=='on':
+        price+=10
+        
+    return render_template('lab3/pay.html',price=price)
+
+
+@lab3.route('/lab3/success')
+def success():
+    price=request.args.get('price')
+    return render_template('lab3/success.html',price=price)
+
+@lab3.route('/lab3/settings')
+def settings():
+    color=request.args.get('color')
+    background_color=request.args.get('background_color')
+    font_size=request.args.get('font_size')
+    text_align=request.args.get('text_align')
+    if (color or background_color or font_size or text_align):
+        resp=make_response(redirect('/lab3/settings'))
+        resp.set_cookie('color',color)
+        resp.set_cookie('background_color',background_color)
+        resp.set_cookie('font_size',font_size)
+        resp.set_cookie('text_align',text_align)
+        return resp
+    
+    color=request.cookies.get('color')
+    background_color=request.cookies.get('background_color')
+    font_size=request.cookies.get('font_size')
+    text_align=request.cookies.get('text_align')
+    resp=make_response(render_template('lab3/settings.html',color=color,background_color=background_color,text_align=text_align,font_size=font_size))
+    return resp

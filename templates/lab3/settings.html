@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 3 {% endblock %}
+
+
+{% block main %}
+    <h1>Cookies</h1>
+    <form>
+        <div>
+            <label class="label" for="color">Выберите цвет текста:</label>
+            <input style="margin-top: 10px;" type="color" id="color" name="color" value="{{ color or ''}}">
+        </div>
+
+        <div>
+            <label class="label" for="background_color">Выберите цвет фона:</label>
+            <input style="margin-top: 10px;" type="color" id="background_color" name="background_color" value="{{ background_color or ''}}">
+        </div>
+
+        <div>
+            <label class="label" for="font_size">Введите размер текста:</label>
+            <input style="margin-top: 10px; margin-bottom:10px;" type="number" id="font_size" name="font_size" value="{{ font_size or ''}}">
+        </div>
+
+        <label>Выберите выравнивание текста: </label>    
+        <div style="margin-top:10px; display:inline-block;">
+            <select name="text_align">
+                <option value="left" {{text_align=='left' and 'selected'}}>По левому краю</option>
+                <option value="right" {{text_align=='right' and 'selected'}}>По правому краю</option>
+                <option value="center" {{text_align=='center' and 'selected'}}>По центру</option>
+                <option value="justify" {{text_align=='justify' and 'selected'}}>По ширине</option>
+            </select>
+        </div>
+
+        <div style="margin-top: 15px; margin-left:10px;">
+            <button type="submit">OK</button>
+        </div>
+    </form>
+{% endblock %}

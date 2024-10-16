@@ -71,7 +71,7 @@ def author():
 @lab1.route('/lab1/oak')
 def oak():
     path=url_for("static", filename="oak.jpg")
-    path2=url_for("static", filename=".css")
+    path2=url_for("static", filename="lab1.css")
     return '''
 <!doctype html>
 <html> 
