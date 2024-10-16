@@ -92,3 +92,57 @@ def settings():
     text_align=request.cookies.get('text_align')
     resp=make_response(render_template('lab3/settings.html',color=color,background_color=background_color,text_align=text_align,font_size=font_size))
     return resp
+
+
+@lab3.route('/lab3/bilet')
+def bilet():
+    errors={} 
+    price=0
+    ticket_type=""
+    passenger=request.args.get('passenger')
+    polka=request.args.get('polka')
+    linen=request.args.get('linen')
+    baggage=request.args.get('baggage')
+    age=request.args.get('age')
+    from_=request.args.get('from_')
+    where_=request.args.get('where_')
+    date=request.args.get('date')
+    belay=request.args.get('belay')
+   
+    if passenger=="":
+        errors['passenger']='Заполните поле!'
+    
+    if age=="" or age is None:
+        errors['age']='Заполните поле!'
+    else:
+        age = int(age)
+        if age < 1 or age > 120:
+            errors['age']='Возраст должен быть от 1 до 120 лет'
+
+    if from_=='':
+        errors['from_']='Заполните поле!'
+
+    if where_=='':
+        errors['where_']='Заполните поле!'
+    if not errors:
+        if date=='':
+            errors['date']='Заполните поле!'
+
+        if age>18:
+            price=1000
+            ticket_type='Взрослый билет' 
+        else:
+            price=700
+            ticket_type='Десткий билет' 
+        if polka =='down' or polka=='lower-side':
+            price+=100
+        if linen=='yes':
+            price+=75
+        if baggage=='baggage_yes':
+            price+=250   
+        if belay=='belay_yes':
+            price+=150  
+
+    return render_template('lab3/bilet.html',passenger=passenger,errors=errors,polka=polka,
+                           linen=linen,baggage=baggage,age=age,from_=from_,
+                           where_=where_,date=date,belay=belay,price=price,ticket_type=ticket_type)

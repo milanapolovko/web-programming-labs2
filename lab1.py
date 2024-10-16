@@ -70,8 +70,8 @@ def author():
 
 @lab1.route('/lab1/oak')
 def oak():
-    path=url_for("static", filename="oak.jpg")
-    path2=url_for("static", filename="lab1.css")
+    path=url_for("static", filename="/lab1/oak.jpg")
+    path2=url_for("static", filename="/lab1/lab1.css")
     return '''
 <!doctype html>
 <html> 
@@ -216,8 +216,8 @@ def trigger_error():
 
 @lab1.route('/lab1/text')
 def text():
-    path=url_for("static", filename="gospodin-iz-san-frantsisko.jpg")
-    path2=url_for("static", filename="3357eb3351df22d8.jpg")
+    path=url_for("static", filename="/lab1/gospodin-iz-san-frantsisko.jpg")
+    path2=url_for("static", filename="/lab1/3357eb3351df22d8.jpg")
     return '''
 <!doctype html>
 <html>
