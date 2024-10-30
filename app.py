@@ -2,12 +2,13 @@ from flask import Flask, url_for
 from lab1 import lab1
 from lab2 import lab2
 from lab3 import lab3
-
+from lab4 import lab4
 
 app=Flask(__name__)
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
 app.register_blueprint(lab3)
+app.register_blueprint(lab4)
 
 @app.route("/")
 def title():
@@ -25,6 +26,7 @@ def title():
                     <li><a href="/lab1/">Первая лабораторная работа</a></li>
                     <li><a href="/lab2/">Вторая лабораторная работа</a></li>
                     <li><a href="/lab3/">Третья лабораторная работа</a></li>
+                    <li><a href="/lab4/">Четвертая лабораторная работа</a></li>
                 </ol>
             </main>
             <footer>
