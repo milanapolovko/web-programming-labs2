@@ -174,3 +174,40 @@ def fridge():
     images_html = ''.join(images)
     
     return f'Установлена температура: {temperature}°С {images_html}'
+
+prices = {
+    "ячмень": 12345,
+    "овёс": 8522,
+    "пшеница": 8722,
+    "рожь": 14111
+}
+
+weight=0
+@lab4.route('/lab4/order', methods=['GET','POST'])
+def order():
+    global weight
+    total_price = None
+    discount = None
+    grain = None
+    if request.method == 'POST':
+        grain = request.form.get('grain')
+        weight = request.form.get('weight')
+
+        if weight=='':
+            return render_template('lab4/order.html', error='Ошибка: вес не указан')
+            
+        else:
+            weight = int(weight)
+            if weight <= 0:
+                return render_template('lab4/order.html', error='Ошибка: вес должен быть больше 0')
+            elif weight > 500:
+                return render_template('lab4/order.html', error='Ошибка: такого объёма сейчас нет в наличии')
+        
+        total_price = prices.get(grain) * weight
+
+        discount = 0
+        if weight > 50:
+            discount = total_price * 0.10
+            total_price -= discount
+            
+    return render_template('lab4/order.html', grain=grain, weight=weight, total_price=total_price, discount=discount)
