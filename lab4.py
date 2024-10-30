@@ -149,3 +149,28 @@ def login():
 def logout():
    session.pop('login',None)
    return redirect('/lab4/login')
+
+@lab4.route('/lab4/fridge', methods=['GET','POST'])
+def fridge():
+    images = []
+    if request.method=='GET':
+         return render_template('lab4/fridge.html',temperature=None)
+    temperature = request.form.get('temperature')
+    if temperature=='':
+        return 'Ошибка: не задана температура'
+    else:
+        temperature = int(temperature)
+        if temperature < -12:
+            return 'Не удалось установить температуру — слишком низкое значение'
+        elif temperature > -1:
+            return 'Не удалось установить температуру — слишком высокое значение'
+        elif -12 <= temperature <= -9:
+            images.extend(['<img src="/static/lab4/снежинка.png" width="20" height="20">' for _ in range(3)])
+        elif -8 <= temperature <= -5:
+            images.extend(['<img src="/static/lab4/снежинка.png" width="20" height="20">' for _ in range(2)])
+        elif -4 <= temperature <= -1:
+            images.extend('<img src="/static/lab4/снежинка.png" width="20" height="20">')
+    
+    images_html = ''.join(images)
+    
+    return f'Установлена температура: {temperature}°С {images_html}'
