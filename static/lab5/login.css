@@ -1,0 +1,27 @@
+h1{
+    text-align: center;
+    
+}
+    
+form{
+    background-color: rgba(249, 221, 177, 0.457);
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    position: relative;
+    left: 36%;
+}
+div{
+    margin: 10px;
+    
+}
+button{
+    background-color: #007BFF; 
+    color: #ffffff; 
+    border: none; 
+    padding: 5px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px;
+}
