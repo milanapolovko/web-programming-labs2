@@ -6,13 +6,12 @@
 {% endblock %}
 
 {% block main %}
-    <h1>База данных</h1>
+    <h1>База знаний</h1>
     <div class="button">
         <button disabled name="operation" value="open"><a href="/lab5/login">Вход</a></button>
         <button disabled name="operation" value="regist"><a href="/lab5/register">Регистрация</a></button>
         <button disabled name="operation" value="spisok"><a href="/lab5/list">Список статей</a></button>
         <button disabled name="operation" value="new"><a href="/lab5/create">Создать статью</a></button> 
-        
         <div class="name">
             {%if login %}
                 {{login}}
