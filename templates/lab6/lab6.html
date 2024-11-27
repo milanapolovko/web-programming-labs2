@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block lab %} Лабораторная работа 6 {% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static',filename='/lab6/style.css')}}">
+{% endblock %}
+
 
 {% block script%}
 <script>
@@ -21,14 +25,16 @@ function getOfficeList(){
     })
     .then (function(data){
         const office_list=data.result;
+        const cost= data.sum;
         const ul=document.getElementById('office-list');
+       
         for( let i=0; i<office_list.length; i++) {
             const office=office_list[i];
             const li=document.createElement('li');
-            li.innerText=`${office.number}:${office.tenant || 'свободен'}`;
-            
+            li.innerText=`${office.number}: ${office.tenant || 'Cвободен'}. Стоимость: ${office.price} р `;
+
             const bookingButton=document.createElement('button');
-            bookingButton.innerText='зарезервировать';
+            bookingButton.innerText='Зарезервировать';
             bookingButton.onclick=function() {booking (office.number)};
             li.appendChild(bookingButton);
 
@@ -39,6 +45,8 @@ function getOfficeList(){
 
             ul.appendChild(li);
         }
+        const totalCostElement = document.getElementById('cost');
+        totalCostElement.innerText = `Общая стоимость забронированных офисов: ${cost} р`;
     });
 }
 function booking(officeNumber){
@@ -75,7 +83,6 @@ function booking(officeNumber){
             document.getElementById('office-list').innerHTML='';
             getOfficeList();}
     });
-
 }
 
 function cancellation(officeNumber){
@@ -116,6 +123,7 @@ function cancellation(officeNumber){
             getOfficeList();}
     });
 }
+
 document.addEventListener('DOMContentLoaded', function(){
     getOfficeList();
 });
@@ -126,4 +134,5 @@ document.addEventListener('DOMContentLoaded', function(){
 {% block main %}
     <h1>Список кабинетов</h1>
     <ul id="office-list"></ul>
+    <div id="cost"></div>
 {% endblock %}
