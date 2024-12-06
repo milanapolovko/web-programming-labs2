@@ -57,7 +57,7 @@ films=[
             за её кошкой, а возвращается из поездки не одна, а с состоятельным молодым человеком Беном. \
             Однажды парочка приходит к Джон-су, и Бен рассказывает о своем тайном хобби. С этого момента\
             Джон-су лишается покоя, и его начинает одолевать предчувствие страшного."
-    },
+    }
 
 ]
 
@@ -68,23 +68,13 @@ def get_films():
 @lab7.route('/lab7/rest-api/films/<int:id>', methods=['GET'])
 def get_film(id):  
     if id >= len(films):
-         return {
-            'jsonrpc': '2.0',
-            'error': {
-                'code': 404,
-                'message': 'Film not found'
-            },}
+        return {'error': 'Film not found'},404 
     return films[id]
 
 @lab7.route('/lab7/rest-api/films/<int:id>', methods=['DELETE'])
 def del_film(id): 
     if id >= len(films):
-         return {
-            'jsonrpc': '2.0',
-            'error': {
-                'code': 404,
-                'message': 'Film not found'
-            },}
+        return {'error': 'Film not found'},404
     del films[id]
     return '', 204
 
@@ -92,12 +82,7 @@ def del_film(id):
 def put_film(id): 
     film=request.get_json()
     if id >= len(films):
-         return {
-            'jsonrpc': '2.0',
-            'error': {
-                'code': 404,
-                'message': 'Film not found'
-            },}
+        return {'error': 'Film not found'},404
     if film['description']=='':
         return {'description': 'Заполните описание'},400
     films[id]=film
@@ -109,6 +94,8 @@ def add_film():
     film=request.get_json()
     if film['description']=='':
         return {'description': 'Заполните описание'},400
+    if film['title']=='':
+        film['title']= film ['title_ru']
     films.append(film)
-    return ({'id': len(films) - 1})
+    return ({'id': len(films)-1})
         

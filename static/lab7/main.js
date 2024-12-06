@@ -14,7 +14,7 @@ function fillFilmList(){
             let tdYear=document.createElement('td');
             let tdActions=document.createElement('td');
 
-            tdTitle.innerText=films[i].title==films[i].title_ru ? '' : films[i].title;
+            tdTitle.innerText=films[i].title || films[i].title_ru;
             tdTitleRus.innerText=films[i].title_ru;
             tdYear.innerText=films[i].year;
 
@@ -66,7 +66,7 @@ function cancel(){
 function addFilm(){
     document.getElementById('id').value='';
     document.getElementById('title').value='';
-    document.getElementById('title-ru').value='';
+    document.getElementById('title_ru').value='';
     document.getElementById('year').value='';
     document.getElementById('description').value='';
     showModal();
@@ -76,7 +76,7 @@ function sendFilm(){
     const id=document.getElementById('id').value;
     const film={
         title: document.getElementById('title').value,
-        title_ru:document.getElementById('title-ru').value,
+        title_ru:document.getElementById('title_ru').value,
         year: document.getElementById('year').value,
         description: document.getElementById('description').value
     }
@@ -110,7 +110,7 @@ function editFilm(id){
     .then (function(film){
         document.getElementById('id').value=id;
         document.getElementById('title').value=film.title;
-        document.getElementById('title-ru').value=film.title_ru;
+        document.getElementById('title_ru').value=film.title_ru;
         document.getElementById('year').value=film.year;
         document.getElementById('description').value=film.description;
         showModal();
