@@ -44,13 +44,12 @@ if app.config['DB_TYPE']=='postgres':
     db_password='123'
     host_ip='127.0.0.1'
     host_port=5432
-    options="-c client_encoding=utf8"
 
-    app.config['SQLALCHEMY_DATABASE_URI']=f'postgresql://{db_user}:{db_password}@{host_ip}:{host_port}/{db_name}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = (f'postgresql://{db_user}:{db_password}@{host_ip}:{host_port}/{db_name}?client_encoding=utf8')
 else:
     dir_path=path.dirname(path.realpath(__file__))
     db_path=path.join(dir_path,"milana_polovko_orm.db")
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///{db_path}'
+    app.config['SQLALCHEMY_DATABASE_URI']=f'sqlite:///{db_path}'
 
 db.init_app(app)
 
