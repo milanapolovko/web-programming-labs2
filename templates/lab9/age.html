@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main %}
+   <h1>Введите возраст</h1>
+   <form method="POST" action="/lab9/age/{{ username }}">
+         <p>Имя пользователя: {{ username }}</p>
+         <input type="number" name="age" required>
+         <button type="submit">Далее</button>
+   </form>
+{% endblock %}

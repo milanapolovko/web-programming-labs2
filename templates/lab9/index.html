@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block lab %}Лабораторная работа 9{% endblock %}
-{% block style %}
-    <link rel="stylesheet" href="{{url_for('static',filename='/lab5/articles.css')}}">
-{% endblock %}
 
 {% block script %}
 
@@ -11,13 +8,9 @@
 
 {% block main %}
    <h1>Поздравления</h1>
-   <div class="articles-container">
-      {%for article in articles %}
-         <div class="article">
-            <h2>{{ article.title }}</h2>
-            <blockquote>{{ article.article_text }}</blockquote>
-            <a href="/lab8/redact/{{ article.id }}">Редактировать</a>
-         </div>
-      {%endfor%}    
-   </div>
+   <form method="post" action="/lab9/">
+         <p>Введите имя пользователя</p>
+         <input type="text" name="username">
+         <button type="submit">Далее</button>
+   </form>
 {% endblock %}
