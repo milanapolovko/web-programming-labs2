@@ -2,9 +2,9 @@ import os
 from os import path
 from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
-from db import db
-from db.models import users, articles
 from flask_login import LoginManager
+from db import db
+from db.models import users
 
 from lab1 import lab1
 from lab2 import lab2
